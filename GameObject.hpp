@@ -22,10 +22,6 @@ class GameObject
     void MoveObj(int x_vel,int y_vel);
     void animate(const char* texturesheet,SDL_Renderer* ren);
 
-    //virtual functions
-    //virtual void set_x_trajectory();
-    //virtual void set_y_trajectory();
-    
     //getter- setter
     void set_xpos(int x){xpos=x;}
     void set_ypos(int y){ypos=y;}

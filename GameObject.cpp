@@ -38,3 +38,7 @@ void GameObject::Render()
 {
     SDL_RenderCopy(renderer,objTexture,&src_rect,&dst_rect);
 }
+GameObject::~GameObject()
+{
+    cout<<"gameobject destroyed"<<endl;
+}
