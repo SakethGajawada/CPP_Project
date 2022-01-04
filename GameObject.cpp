@@ -1,28 +1,55 @@
 #include"GameObject.hpp"
 #include"TextureManager.hpp"
-#include"Enemy.hpp"
-#include"Enemy1.hpp"
-int count = 0;
-GameObject::GameObject(const char* texturesheet,int x,int y)
+
+
+GameObject::GameObject(const char*texturesheet,SDL_Renderer* ren,int x,int y,int vel)
 {
-    //renderer=ren;
-    std::cout<<"GameObject"<<std::endl;
-    objTexture=TextureManager::LoadTexture(texturesheet);
-    std::cout<<"xpos ke upar"<<std::endl;
-    xpos=x; ypos=y;
+    SDL_Surface* tempSurface = IMG_Load(texturesheet);
+	objTexture=SDL_CreateTextureFromSurface(ren, tempSurface);
+    //objTexture=TextureManager::LoadTexture(texturesheet,ren);
+    this->xpos=x;
+    this->ypos=y;
+    this->vel=vel;
+    renderer=ren;
 }
 
-void GameObject::Update()
+void GameObject:: MoveObj(int x_vel,int y_vel)
 {
-    //count++;
-    //xpos=set_x_trajectory();
-    //ypos=set_y_trajectory();
-    xpos++;
-    ypos++;
-    src_rect.h=64 ,src_rect.w=64,src_rect.x=0,src_rect.y=0;
-    dst_rect.x=xpos,dst_rect.y=ypos,dst_rect.h=src_rect.h*2,dst_rect.w=src_rect.w*2;
+    xpos+=x_vel;
+    ypos+=y_vel;
 }
+void GameObject::animate(const char*texSheet,SDL_Renderer* ren)
+{
+    if(objTexture!=NULL)
+    {
+        SDL_DestroyTexture(objTexture);
+    }
+    // objTexture=TextureManager::LoadTexture(texSheet,ren);
+    SDL_Surface* tempSurface = IMG_Load(texSheet);
+	objTexture=SDL_CreateTextureFromSurface(ren, tempSurface);
+    SDL_FreeSurface(tempSurface);
+}
+
+void GameObject::Update(int srch,int srcw)
+{
+    src_rect->h=srch;
+    src_rect->w=srcw;
+    src_rect->x=0;
+    src_rect->y=0;
+
+    dst_rect->x=xpos;
+    dst_rect->y=ypos;
+    dst_rect->w=src_rect->w;
+    dst_rect->h=src_rect->h;
+}
+
 void GameObject::Render()
 {
-    SDL_RenderCopy(Game::renderer,objTexture,&src_rect,&dst_rect);
+    SDL_RenderCopy(renderer,objTexture,src_rect,dst_rect);
+    //SDL_DestroyTexture(objTexture);
+}
+GameObject::~GameObject()
+{
+    cout<<"gameobject destroyed"<<endl;
+    //SDL_DestroyTexture(objTexture);
 }

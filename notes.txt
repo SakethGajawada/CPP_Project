@@ -1,0 +1,55 @@
+goku_standing-> h=110, w=76;
+goku_shooting->h=90, w=70;
+bullet-> h=30, w=32;
+
+
+---------------------------------
+/*switch (Game::event.key.keysym.sym)
+		{
+		case SDLK_RIGHT:
+			if (powerFlag == 1) 
+			{
+				player->animate("goku_power.png", renderer);
+				break;
+			} 
+			player->animate("goku_standing.png", renderer);
+			break;
+		case SDLK_LEFT:
+			if (powerFlag == 1)
+			{
+				player->animate("goku_power.png", renderer);
+				break;
+			}
+			player->animate("goku_standing.png", renderer);
+			break;
+		case SDLK_UP:
+			if (powerFlag == 1)
+			{
+				player->animate("goku_power.png", renderer);
+				break;
+			}
+			player->animate("goku_standing.png", renderer);
+			break;
+		case SDLK_DOWN:
+			if (powerFlag == 1)
+			{
+				player->animate("goku_power.png", renderer);
+				break;
+			}
+			player->animate("goku_standing.png", renderer);
+			break;
+		case SDLK_SPACE:
+			if (powerFlag == 1)
+			{
+				player->animate("goku_power.png", renderer);
+				break;
+			}
+			player->animate("goku_standing.png", renderer);
+			break;
+		case SDLK_p:
+			player->animate("goku_standing.png", renderer);
+			player->set_velocity(ogspeed);
+			powerFlag = 0;
+			break;
+		}
+		break;*/

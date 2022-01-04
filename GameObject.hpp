@@ -3,33 +3,32 @@
 
 class GameObject
 {
-    private:
+    protected:
     SDL_Texture* objTexture;
-    //SDL_Renderer* renderer;
+    int xpos,ypos;
+    SDL_Rect* src_rect=new SDL_Rect();
+    SDL_Rect* dst_rect=new SDL_Rect();
+    int vel;
+    SDL_Renderer* renderer;
     public:
-    int xpos, ypos;
-    SDL_Rect src_rect,dst_rect;
-    GameObject(const char* texturesheet,int x,int y);
+    //constructor -destructor
+    GameObject(const char*texturesheet,SDL_Renderer* renderer,int x,int y,int vel);
     ~GameObject();
-    void Update();
+    
+    //main functions
+    void Update(int srch,int srcw);
     void Render();
-    void setSrc(int x,int y,int h,int w)
-    {
-        src_rect.x = x; src_rect.y = y; src_rect.h = h; src_rect.w = w;
-    }
-    void setDest(int w,int h)
-    {
-        dst_rect.w = w;
-        dst_rect.h=h;
-    }
-    virtual int set_x_trajectory()=0;
-    virtual int set_y_trajectory()=0;
-    // void setSpeed(int s)
-    // {
-    //     speed=s;
-    // }
-    //virtual void set_trajectory();
+    void setSrc(int x,int y,int h,int w);
+    void setDst(int x,int y,int h,int w);
+    void MoveObj(int x_vel,int y_vel);
+    void animate(const char* texturesheet,SDL_Renderer* ren);
 
-
-
-} ;
+    //getter- setter
+    void set_xpos(int x){xpos=x;}
+    void set_ypos(int y){ypos=y;}
+    int get_xpos(){return xpos;}
+    int get_ypos(){return ypos;}
+    int get_velocity(){return vel;}
+    void set_velocity(int v){vel=v;}
+    SDL_Rect* get_dst_rect(){return dst_rect;}
+};
